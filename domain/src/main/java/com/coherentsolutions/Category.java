@@ -5,10 +5,14 @@ import java.util.List;
 
 public class Category {
     private Categories name;
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();
 
     public Category(Categories name) {
         this.name = name;
-        this.productList = new ArrayList<>();
+    }
+
+    //considered encapsulating the addition of products
+    public void addProduct(Product product) {
+        productList.add(product);
     }
 }
