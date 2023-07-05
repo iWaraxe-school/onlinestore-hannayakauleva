@@ -1,9 +1,11 @@
 package com.coherentsolutions;
 
+import java.math.BigDecimal;
+
 public class Product {
     private String name;
     private double rate;
-    private double price;
+    private BigDecimal price;
 
     public String getName() {
         return name;
@@ -12,13 +14,22 @@ public class Product {
         return rate;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public Product (String name, double rate, double price) {
+    public Product (String name, double rate, BigDecimal price) {
         this.name = name;
         this.rate = rate;
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "\nProduct{" +
+                "name='" + name + '\'' +
+                ", rate=" + rate +
+                ", price=" + price +
+                '}';
     }
 }
