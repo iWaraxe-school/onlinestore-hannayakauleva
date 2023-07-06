@@ -22,7 +22,11 @@ public class RandomProductGenerator {
             case BOOKS:
                 return faker.book().title();
             default:
-                return null;
+                //I decided to return categoryName + random number if I didn't find appropriate item in Faker library
+                var n = faker.number().numberBetween(1, 100);
+                var st = categoryName.name();
+                var name = st + "_" + n;
+                return name;
         }
     }
 
@@ -30,7 +34,7 @@ public class RandomProductGenerator {
         return BigDecimal.valueOf(faker.number().randomDouble(2, 0, 100));
     }
 
-    private double generateRate() {
-        return faker.number().randomDouble(1, 1, 5);
+    private BigDecimal generateRate() {
+        return BigDecimal.valueOf(faker.number().randomDouble(1, 1, 5));
     }
 }

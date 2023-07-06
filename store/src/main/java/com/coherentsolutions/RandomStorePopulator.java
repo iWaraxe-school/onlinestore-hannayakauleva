@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class RandomStorePopulator {
     private final Store store;
-    public RandomStorePopulator(Store store) {
+    public RandomStorePopulator(Store store) throws Exception {
         this.store = store;
         createCategories();
     }
@@ -21,7 +21,7 @@ public class RandomStorePopulator {
 
     }
 
-    private void createCategories() {
+    private void createCategories() throws Exception {
         Reflections reflections = new Reflections("com.coherentsolutions");
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
         System.out.println(subTypes);
@@ -33,7 +33,8 @@ public class RandomStorePopulator {
                 populateCategory(category, 5);
                 store.addCategory(category);
             } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+                throw new Exception(String.format("Couldn't create category: %s", subType.getName()));
+                //e.printStackTrace();
             }
         }
     }

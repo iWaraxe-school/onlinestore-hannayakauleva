@@ -1,7 +1,7 @@
 package com.coherentsolutions;
 
 public class StoreApp {
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         Store store = new Store();
         var pop = new RandomStorePopulator(store);
         System.out.println(store);
