@@ -1,5 +1,6 @@
 package com.coherentsolutions;
 
+import com.coherentsolutions.exceptions.CategoryException;
 import org.reflections.Reflections;
 import org.w3c.dom.ls.LSOutput;
 
@@ -33,7 +34,7 @@ public class RandomStorePopulator {
                 populateCategory(category, 5);
                 store.addCategory(category);
             } catch (InstantiationException | IllegalAccessException e) {
-                throw new Exception(String.format("Couldn't create category: %s", subType.getName()));
+                throw new CategoryException(subType.getName());
                 //e.printStackTrace();
             }
         }

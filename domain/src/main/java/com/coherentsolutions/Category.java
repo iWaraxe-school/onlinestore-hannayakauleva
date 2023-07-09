@@ -24,6 +24,6 @@ public class Category {
     @Override
     public String toString() {
         String categoryPrint = String.format("Category: name = %s, productList = %s", name, productList);
-        return "\nCategory{" + "name=" + name +  ", productList=" + productList + '}';
+        return categoryPrint;
     }
 }
