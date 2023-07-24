@@ -23,7 +23,11 @@ public class Category {
 
     @Override
     public String toString() {
-        String categoryPrint = String.format("Category: name = %s, productList = %s", name, productList);
-        return categoryPrint;
+        StringBuilder sb = new StringBuilder("Category: ");
+        sb.append(name).append("\n");
+        for (var product : productList) {
+            sb.append("\t").append(product).append("\n");
+        }
+        return sb.toString();
     }
 }
