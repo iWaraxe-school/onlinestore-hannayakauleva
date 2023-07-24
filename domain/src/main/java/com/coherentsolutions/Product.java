@@ -3,14 +3,14 @@ package com.coherentsolutions;
 import java.math.BigDecimal;
 
 public class Product {
-    private String name;
-    private double rate;
-    private BigDecimal price;
+    private final String name;
+    private final BigDecimal rate;
+    private final BigDecimal price;
 
     public String getName() {
         return name;
     }
-    public double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
@@ -18,7 +18,7 @@ public class Product {
         return price;
     }
 
-    public Product (String name, double rate, BigDecimal price) {
+    public Product (String name, BigDecimal rate, BigDecimal price) {
         this.name = name;
         this.rate = rate;
         this.price = price;
@@ -26,10 +26,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\nProduct{" +
-                "name='" + name + '\'' +
-                ", rate=" + rate +
-                ", price=" + price +
-                '}';
+        //Since we used String.format - there is no necessity to use StringBuilder since the concatenation is gone
+        String productPrint = String.format("\nProduct: name = %s, rate = %.2f, price = %.2f", name, rate, price);
+        return productPrint;
     }
 }

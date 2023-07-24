@@ -16,8 +16,7 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Store{" +
-                "categoryList=" + categoryList +
-                '}';
+        String storePrint = String.format("Store: categoryList = %s", categoryList);
+        return storePrint;
     }
 }

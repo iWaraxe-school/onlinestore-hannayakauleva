@@ -23,6 +23,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "\nCategory{" + "name=" + name +  ", productList=" + productList + '}';
+        String categoryPrint = String.format("Category: name = %s, productList = %s", name, productList);
+        return categoryPrint;
     }
 }
