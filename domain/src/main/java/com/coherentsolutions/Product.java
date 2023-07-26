@@ -27,7 +27,7 @@ public class Product {
     @Override
     public String toString() {
         //Since we used String.format - there is no necessity to use StringBuilder since the concatenation is gone
-        String productPrint = String.format("\nProduct: name = %s, rate = %.2f, price = %.2f", name, rate, price);
+        String productPrint = String.format("\tProduct: %s, Rate: %.2f, Price: %.2f", name, rate, price);
         return productPrint;
     }
 }
