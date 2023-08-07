@@ -20,9 +20,9 @@ public class ComparatorSortByMap implements Comparator<Product> {
             Sort sortOrder = entry.getValue();
             int result = sortBySortField(sortField, o1, o2);
             if (result != 0){
-                if (sortOrder.equals("ASC")) {
+                if (sortOrder.equals(Sort.ASC)) {
                     return result;
-                } else if (sortOrder.equals("DESC")) {
+                } else if (sortOrder.equals(Sort.DESC)) {
                     return result * -1;
                 }
             }
@@ -39,7 +39,7 @@ public class ComparatorSortByMap implements Comparator<Product> {
                 return o1.getPrice().compareTo(o2.getPrice());
             }
             case "rate": {
-                return o1.getRate().compareTo(o2.getPrice());
+                return o1.getRate().compareTo(o2.getRate());
             }
             default: return 0;
         }

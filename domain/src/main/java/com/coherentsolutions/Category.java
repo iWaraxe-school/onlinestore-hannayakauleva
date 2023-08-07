@@ -12,6 +12,10 @@ public class Category {
 
     private List<Product> productList = new ArrayList<>();
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
     public Category(Categories name) {
         this.name = name;
     }
