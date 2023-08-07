@@ -6,6 +6,7 @@ import java.util.List;
 public class Store {
     private List<Category> categoryList;
 
+
     String storeName = "Bauch-Swaniawski";
 
     public Store() {

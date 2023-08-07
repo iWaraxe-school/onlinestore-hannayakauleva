@@ -1,6 +1,9 @@
 package com.coherentsolutions;
 
+import com.coherentsolutions.xml.ComparatorSortByMap;
 import com.coherentsolutions.xml.XMLParser;
+
+import java.util.Collections;
 
 
 public class StoreApp {
@@ -13,9 +16,11 @@ public class StoreApp {
 
 
 
-//        Store store = new Store();
-//        var pop = new RandomStorePopulator(store);
-//        System.out.println(store);
+        Store store = new Store();
+        var pop = new RandomStorePopulator(store);
+
+       // Collections.sort(...,new ComparatorSortByMap(res));
+        System.out.println(store);
 
     }
 }
