@@ -20,7 +20,7 @@ public class Store {
         categoryList.add(cat);
     }
 
-        @Override
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Store: ");
         sb.append(storeName).append("\n");

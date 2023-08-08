@@ -10,30 +10,14 @@ import java.util.List;
 
 public class StoreApp {
     public static void main(String[] args) throws Exception {
-
-        XMLParser parser = new XMLParser();
-        var res = parser.parse();
-        System.out.println(res);
-
-
-
-
+        //Creating empty store with empty list of categories so far
         Store store = new Store();
+        //Populating the store with categories already populated with products
         var pop = new RandomStorePopulator(store);
         System.out.println(store);
 
-
-        // Created list of all products of all categories
-        List<Product> allProducts = new ArrayList<>();
-        for (Category category : store.getCategoryList()) {
-            allProducts.addAll(category.getProductList());
-        }
-        // Created new list and populated it with allProducts list in order to update new list
-        // while sorting and not to touch the initial list of products
-        List<Product> sortedProducts = new ArrayList<>(allProducts);
-        Collections.sort(sortedProducts, new ComparatorSortByMap(res));
-        System.out.println(sortedProducts);
-
-
+        SortedService ss = new SortedService(store);
+        List<Product> sortedStore = ss.sort();
+        System.out.println(ss);
     }
 }
