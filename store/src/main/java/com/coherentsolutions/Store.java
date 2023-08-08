@@ -6,6 +6,10 @@ import java.util.List;
 public class Store {
     private List<Category> categoryList;
 
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
     String storeName = "Bauch-Swaniawski";
 
     public Store() {
@@ -16,7 +20,7 @@ public class Store {
         categoryList.add(cat);
     }
 
-    @Override
+        @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Store: ");
         sb.append(storeName).append("\n");
