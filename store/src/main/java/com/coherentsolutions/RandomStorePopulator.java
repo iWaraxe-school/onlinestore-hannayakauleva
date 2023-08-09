@@ -2,7 +2,6 @@ package com.coherentsolutions;
 
 import com.coherentsolutions.exceptions.CategoryException;
 import org.reflections.Reflections;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.Set;
 
@@ -35,7 +34,8 @@ public class RandomStorePopulator {
                 populateCategory(category, PRODUCTS_COUNT);
                 store.addCategory(category);
             } catch (InstantiationException | IllegalAccessException e) {
-                throw new CategoryException(subType.getName());
+                // besides category name we now pass detailed message of real exception happened
+                throw new CategoryException(subType.getName(), e.getMessage());
                 //e.printStackTrace();
             }
         }
