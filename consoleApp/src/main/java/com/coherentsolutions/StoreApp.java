@@ -3,6 +3,7 @@ package com.coherentsolutions;
 import com.coherentsolutions.xml.ComparatorSortByMap;
 import com.coherentsolutions.xml.XMLParser;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 
 public class StoreApp {
     public static void main(String[] args) throws Exception {
+
+
         //Creating empty store with empty list of categories so far
         Store store = new Store();
         //Populating the store with categories already populated with products
