@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class RandomStorePopulator {
     private final Store store;
-    private final int PRODUCTS_COUNT = 10;
+    private static final int PRODUCTS_COUNT = 7;
     public RandomStorePopulator(Store store) throws Exception {
         this.store = store;
         createCategories();

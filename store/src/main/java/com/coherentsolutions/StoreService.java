@@ -12,22 +12,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class SortedService {
-    private List<Product> unsortedProducts = new ArrayList<>();
-    private List<Product> sortedProducts = new ArrayList<>();
-    private Map<String, Sort> sortRules;
+public class StoreService {
+    private final List<Product> unsortedProducts = new ArrayList<>();
+    private final List<Product> sortedProducts = new ArrayList<>();
+    private final Map<String, Sort> sortRules;
 
-    public SortedService(Store store) throws ParserConfigurationException, IOException, SAXException {
+    public StoreService(Store store) throws ParserConfigurationException, IOException, SAXException {
         //Populating list of all products of all categories
         for (Category category : store.getCategoryList()) {
             unsortedProducts.addAll(category.getProductList());
         }
         //cloning list of products in order not to change initial list of products
         sortedProducts.addAll(unsortedProducts);
+        // Put the result of parsing of XML into the map
+        sortRules = getFromXML();
 
-        //Parsing xml file and putting their keys and values into the map
-        XMLParser parser = new XMLParser();
-        sortRules = parser.parse();
     }
 
     public List<Product> sort() {
@@ -35,6 +34,14 @@ public class SortedService {
         // while sorting and not to touch the initial list of products
         Collections.sort(sortedProducts, new ComparatorSortByMap(sortRules));
         return sortedProducts;
+    }
+
+    // Separated parsing XML into separate method
+    // In Production there can be getFromJSON or getFromDB methods
+    private Map<String, Sort> getFromXML() throws ParserConfigurationException, IOException, SAXException {
+        //Parsing xml file and putting their keys and values into the map
+        XMLParser parser = new XMLParser();
+        return parser.parse();
     }
 
     @Override

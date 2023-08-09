@@ -41,18 +41,8 @@ public class XMLParser {
                 var fieldValue = nodes.item(i).getFirstChild().getNodeValue();
                 // putting the element name and value to the map (converting the element value from String to Sort enum)
                 sorter.put(fieldName, Sort.valueOf(fieldValue.toUpperCase()));
-
-
-//                System.out.print(i + "---");
-//                System.out.print(nodes.item(i).getNodeName() + "---");
-//                System.out.print(nodes.item(i).getTextContent() + "---");
-//                System.out.println(nodes.item(i).getNodeType() + "---");
-//                System.out.print(nodes.item(i).getFirstChild().getNodeValue() + "---");
-//                System.out.println(nodes.item(i).getFirstChild().getNodeType() + "---");
             }
         }
-
-
         return sorter;
     }
 }

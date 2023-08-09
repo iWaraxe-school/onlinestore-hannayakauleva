@@ -1,11 +1,5 @@
 package com.coherentsolutions;
 
-import com.coherentsolutions.xml.ComparatorSortByMap;
-import com.coherentsolutions.xml.XMLParser;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -19,7 +13,7 @@ public class StoreApp {
         var pop = new RandomStorePopulator(store);
         System.out.println(store);
 
-        SortedService ss = new SortedService(store);
+        StoreService ss = new StoreService(store);
         List<Product> sortedStore = ss.sort();
         System.out.println(ss);
     }
