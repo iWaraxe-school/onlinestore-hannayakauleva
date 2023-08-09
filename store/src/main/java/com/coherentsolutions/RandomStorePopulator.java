@@ -21,7 +21,7 @@ public class RandomStorePopulator {
         }
 
     }
-
+    //Creates list of categories and populates each category with specified number of products
     private void createCategories() throws Exception {
         Reflections reflections = new Reflections("com.coherentsolutions");
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
