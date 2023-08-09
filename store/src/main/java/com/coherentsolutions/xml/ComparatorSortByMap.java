@@ -14,22 +14,28 @@ public class ComparatorSortByMap implements Comparator<Product> {
     }
 
     @Override
+    // method compares two products by all fields and their directions
     public int compare(Product o1, Product o2) {
         for (Map.Entry<String, Sort> entry : sorter.entrySet()) {
             String sortField = entry.getKey();
             Sort sortOrder = entry.getValue();
             int result = sortBySortField(sortField, o1, o2);
-            if (result != 0){
-                if (sortOrder.equals(Sort.ASC)) {
-                    return result;
-                } else if (sortOrder.equals(Sort.DESC)) {
-                    return result * -1;
-                }
+            int factor = sortByOrder(sortOrder);
+            if (result != 0) {
+                return result * factor;
             }
         }
         return 0;
     }
 
+    // method returns calculates factor according to specified sort direction
+    private int sortByOrder(Sort order) {
+        if (order.equals(Sort.ASC)) return 1;
+        else return -1;
+        // I removed "else if" because our sortOrder can have only two directions (ASC or DESC)
+    }
+
+    // method compares two products by specified field
     private int sortBySortField(String sortField, Product o1, Product o2) {
         switch (sortField) {
             case "name": {
@@ -41,7 +47,8 @@ public class ComparatorSortByMap implements Comparator<Product> {
             case "rate": {
                 return o1.getRate().compareTo(o2.getRate());
             }
-            default: return 0;
+            default:
+                return 0;
         }
     }
 }

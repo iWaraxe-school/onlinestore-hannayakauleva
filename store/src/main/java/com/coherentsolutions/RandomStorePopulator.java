@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class RandomStorePopulator {
     private final Store store;
+    private final int PRODUCTS_COUNT = 10;
     public RandomStorePopulator(Store store) throws Exception {
         this.store = store;
         createCategories();
@@ -31,7 +32,7 @@ public class RandomStorePopulator {
         for (Class<? extends Category> subType : subTypes) {
             try {
                 Category category = subType.newInstance();
-                populateCategory(category, 5);
+                populateCategory(category, PRODUCTS_COUNT);
                 store.addCategory(category);
             } catch (InstantiationException | IllegalAccessException e) {
                 throw new CategoryException(subType.getName());
