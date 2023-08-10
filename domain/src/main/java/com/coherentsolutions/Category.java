@@ -1,29 +1,30 @@
 package com.coherentsolutions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Category {
-    private final Categories name;
+    public Category(Categories name) {
+        this.name = name;
+    }
 
     public Categories getName() {
         return name;
     }
 
-    private List<Product> productList = new ArrayList<>();
-
+    // Applied Collections.unmodifiable method to productList returned in getter to prevent it from the modification
     public List<Product> getProductList() {
-        return productList;
-    }
-
-    public Category(Categories name) {
-        this.name = name;
+        return Collections.unmodifiableList(productList);
     }
 
     //considered encapsulating the addition of products
     public void addProduct(Product product) {
         productList.add(product);
     }
+
+    private final Categories name;
+    private final List<Product> productList = new ArrayList<>();
 
     @Override
     public String toString() {
