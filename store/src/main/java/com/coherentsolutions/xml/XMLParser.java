@@ -1,5 +1,6 @@
 package com.coherentsolutions.xml;
 
+import com.coherentsolutions.exceptions.XMLParserException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 
 public class XMLParser {
-    public Map<String, Sort> parse() throws ParserConfigurationException, IOException, SAXException {
+    public Map<String, Sort> parse() throws ParserConfigurationException, IOException, SAXException, XMLParserException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
 
@@ -37,8 +38,16 @@ public class XMLParser {
             if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 // if the child node is element - retrieving the name of the element
                 var fieldName = nodes.item(i).getNodeName();
+                // adding validation if field name is unexpected
+                if (!fieldName.equals("name") && !fieldName.equals("price") && !fieldName.equals("rate")) {
+                    throw new XMLParserException("The field " + fieldName + " is unexpected");
+                }
                 // retrieving the text between element tags - this is the child node of the element
                 var fieldValue = nodes.item(i).getFirstChild().getNodeValue();
+                // adding validation if the field value is unexpected
+                if (!fieldValue.equals("asc") && !fieldValue.equals("desc")) {
+                    throw new XMLParserException("The field value " + fieldValue + " is unexpected");
+                }
                 // putting the element name and value to the map (converting the element value from String to Sort enum)
                 sorter.put(fieldName, Sort.valueOf(fieldValue.toUpperCase()));
             }
