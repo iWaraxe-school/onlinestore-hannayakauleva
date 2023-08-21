@@ -3,9 +3,43 @@ package com.coherentsolutions;
 import java.math.BigDecimal;
 
 public class Product {
-    private final String name;
-    private final BigDecimal rate;
-    private final BigDecimal price;
+    // removed final modificator from name, rate and price fields in order to use Builder pattern
+    private String name;
+    private BigDecimal rate;
+    private BigDecimal price;
+
+    // implemented creation of product through Builder pattern
+    public static Builder newBuilder() {
+        return new Product().new Builder();
+    }
+
+    public class Builder {
+        private String name;
+        private BigDecimal rate;
+        private BigDecimal price;
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setRate(BigDecimal rate) {
+            this.rate = rate;
+            return this;
+        }
+
+        public Builder setPrice(BigDecimal price) {
+            this.price = price;
+            return this;
+        }
+
+        public Product build() {
+            Product.this.name = this.name;
+            Product.this.rate = this.rate;
+            Product.this.price = this.price;
+            return Product.this;
+        }
+    }
 
     public String getName() {
         return name;
@@ -18,11 +52,11 @@ public class Product {
         return price;
     }
 
-    public Product (String name, BigDecimal rate, BigDecimal price) {
-        this.name = name;
-        this.rate = rate;
-        this.price = price;
-    }
+//    public Product (String name, BigDecimal rate, BigDecimal price) {
+//        this.name = name;
+//        this.rate = rate;
+//        this.price = price;
+//    }
 
     @Override
     public String toString() {
