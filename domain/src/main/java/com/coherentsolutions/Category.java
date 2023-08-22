@@ -1,10 +1,13 @@
 package com.coherentsolutions;
 
-import  java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Category {
+// made the class abstract instead of using interface in Factory Method pattern
+// because the most methods are implemented in the ancestor, not in descendants
+// and have the same behavior
+public abstract class Category {
     public Category(Categories name) {
         this.name = name;
     }

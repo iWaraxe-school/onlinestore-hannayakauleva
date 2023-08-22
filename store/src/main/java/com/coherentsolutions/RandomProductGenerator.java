@@ -6,12 +6,19 @@ import java.math.BigDecimal;
 
 public class RandomProductGenerator {
     private final Faker faker = new Faker();
-
     public Product generateProduct(Categories categoryName) {
-        return new Product(
-                generateName(categoryName),
-                generateRate(),
-                generatePrice());
+        // creating of product via Builder pattern
+        Product product = Product.newBuilder()
+                .setName(generateName(categoryName))
+                .setRate(generateRate())
+                .setPrice(generatePrice())
+                .build();
+        return product;
+
+//        return new Product(
+//                generateName(categoryName),
+//                generateRate(),
+//                generatePrice());
     }
 
 

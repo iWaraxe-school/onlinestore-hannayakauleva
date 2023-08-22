@@ -10,11 +10,13 @@ public class StoreApp {
 
 
         //Creating empty store with empty list of categories so far
-        Store store = new Store();
+        //Creating store through singleton pattern
+        Store store = Store.getInstance();
         //Populating the store with categories already populated with products
         new RandomStorePopulator(store);
         System.out.println(store);
         StoreService ss = new StoreService(store);
+
 
         // Running endless loop for commands entering
         while (true) {
