@@ -3,13 +3,11 @@ package com.coherentsolutions;
 import com.coherentsolutions.exceptions.CategoryException;
 import org.reflections.Reflections;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class RandomStorePopulator {
     private final Store store;
-    private static final int PRODUCTS_COUNT = 7;
+    private static final int PRODUCTS_COUNT = 10;
     public RandomStorePopulator(Store store) throws Exception {
         this.store = store;
         createCategories();
@@ -23,7 +21,7 @@ public class RandomStorePopulator {
         }
 
     }
-    //Creates list of categories and populates each category with specified number of products
+    //Creates list of categories and populates each category with specified number of products using Factory Method pattern
     private void createCategories() throws Exception {
         Categories[] cats = {Categories.BOOKS, Categories.FOOD, Categories.PHONES};
         CategoryFactory categoryFactory = new CategoryFactory();
@@ -35,7 +33,7 @@ public class RandomStorePopulator {
 
     }
 
-//Creates list of categories and populates each category with specified number of products
+//Creates list of categories and populates each category with specified number of products using Reflection
     private void createCategoriesUsingReflection() throws Exception {
         Reflections reflections = new Reflections("com.coherentsolutions");
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);

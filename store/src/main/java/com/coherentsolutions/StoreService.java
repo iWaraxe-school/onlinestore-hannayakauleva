@@ -13,7 +13,11 @@ import java.util.stream.Collectors;
 
 public class StoreService {
     private final List<Product> unsortedProducts = new ArrayList<>();
+    public List<Product> getUnsortedProducts() {
+        return Collections.unmodifiableList(unsortedProducts);
+    }
     private final List<Product> sortedProducts = new ArrayList<>();
+
     private final Map<String, Sort> sortRules;
 
     public StoreService(Store store) throws ParserConfigurationException, IOException, SAXException, XMLParserException {
