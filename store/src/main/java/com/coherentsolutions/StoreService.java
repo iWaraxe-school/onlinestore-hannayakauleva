@@ -49,8 +49,8 @@ public class StoreService {
 
     // Separated parsing XML into separate method
     // In Production there can be getFromJSON or getFromDB methods
+    //Parsing xml file and putting their keys and values into the map
     private Map<String, Sort> getFromXML() throws ParserConfigurationException, IOException, SAXException, XMLParserException {
-        //Parsing xml file and putting their keys and values into the map
         XMLParser parser = new XMLParser();
         return parser.parse();
     }
