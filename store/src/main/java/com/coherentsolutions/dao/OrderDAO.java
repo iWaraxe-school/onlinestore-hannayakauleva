@@ -50,7 +50,7 @@ public class OrderDAO {
     }
 
     @SneakyThrows
-    static public void printOrderDB() {
+    static public String printOrderDB() {
         Connection connection = ConnectionHelper.getInstance().getConnection();
         String query = """
                 select c.name category_name, o.product_id, p.name, p.price
@@ -59,12 +59,15 @@ public class OrderDAO {
                 join categories c on c.id = p.category_id;""";
         PreparedStatement statement = connection.prepareStatement(query);
         ResultSet resultSet = statement.executeQuery();
+        StringBuilder a = new StringBuilder();
         while (resultSet.next()) {
             String categoryName = resultSet.getString("category_name");
             int productId = resultSet.getInt("product_id");
             String productName = resultSet.getString("name");
             BigDecimal price = resultSet.getBigDecimal("price");
-            System.out.printf("\t%s, %d, %s, %.2f \n", categoryName, productId, productName, price);
+            a.append(String.format("\t%s, %d, %s, %.2f \n", categoryName, productId, productName, price));
+//            System.out.printf("\t%s, %d, %s, %.2f \n", categoryName, productId, productName, price);
         }
+        return a.toString();
     }
 }

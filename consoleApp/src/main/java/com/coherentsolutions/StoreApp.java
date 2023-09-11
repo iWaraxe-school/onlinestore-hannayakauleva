@@ -3,6 +3,8 @@ package com.coherentsolutions;
 import com.coherentsolutions.dao.CategoryDAO;
 import com.coherentsolutions.dao.OrderDAO;
 import com.coherentsolutions.dao.ProductDAO;
+import com.coherentsolutions.http.Client;
+import com.coherentsolutions.server.Server;
 import com.coherentsolutions.xml.Sort;
 import com.coherentsolutions.xml.XMLParser;
 
@@ -25,8 +27,11 @@ public class StoreApp {
         OrderDAO.createOrdersTable();
 
 
+
         //Populating the store with categories already populated with products - currently to DB
         new RandomStorePopulator(store);
+
+        Server.startServer();
 
 
         // Creating clear cart task runnable
@@ -42,7 +47,7 @@ public class StoreApp {
         Scanner in = new Scanner(System.in);
         // Running endless loop for commands entering
         while (true) {
-            System.out.print("Please enter either print, or sort, or top, or order, or quit ");
+            System.out.println("Please enter either print, or sort, or top, or order, or quit ");
             String com = in.nextLine();
 
             // Using switch for processing of entered commands
@@ -53,12 +58,14 @@ public class StoreApp {
                     ProductDAO.dropProductsTable();
                     CategoryDAO.dropCategoriesTable();
                     System.out.println("quitting...");
+                    Server.stopServer();
                     // Used return instead of break because here we need to exit out of the loop
                     return;
                 case "print":
                     // CategoryDAO.printStoreJoin();
                     // Printing store from DB
-                    CategoryDAO.printStoreHierarchy();
+                    String a = CategoryDAO.printStoreHierarchy();
+                    System.out.println(a);
                     break;
                 case "sort":
                     XMLParser parser = new XMLParser();
@@ -70,7 +77,8 @@ public class StoreApp {
                     CategoryDAO.printStoreTop5();
                     break;
                 case "order":
-                    new Thread(cotd).start();
+                    // new Thread(cotd).start();
+                    Client.clientMakesOrder();
                     break;
                 default:
                     System.out.println("You've entered unexpected command. Valid commands are: print, sort, top, quit, order");

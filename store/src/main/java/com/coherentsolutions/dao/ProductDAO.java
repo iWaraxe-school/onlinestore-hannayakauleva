@@ -53,17 +53,20 @@ public class ProductDAO {
         System.out.println("Table 'Products' is deleted");
     }
 
-    static public void printProductsByCategory(int categoryId) throws SQLException {
+    static public String printProductsByCategory(int categoryId) throws SQLException {
         Connection connection = ConnectionHelper.getInstance().getConnection();
         String query = "select name, rate, price from products where category_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, categoryId);
         ResultSet resultSet = statement.executeQuery();
+        StringBuilder a = new StringBuilder();
         while (resultSet.next()) {
             String productName = resultSet.getString("name");
             BigDecimal rate = resultSet.getBigDecimal("rate");
             BigDecimal price = resultSet.getBigDecimal("price");
-            System.out.printf("\t%s, %.1f, %.2f \n", productName, rate, price);
+            a.append(String.format("\t%s, %.1f, %.2f \n", productName, rate, price));
+            // System.out.printf("\t%s, %.1f, %.2f \n", productName, rate, price);
         }
+        return a.toString();
     }
 }
