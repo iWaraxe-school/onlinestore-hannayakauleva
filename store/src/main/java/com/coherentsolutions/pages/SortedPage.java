@@ -8,7 +8,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Map;
 
 public class SortedPage implements HttpHandler {

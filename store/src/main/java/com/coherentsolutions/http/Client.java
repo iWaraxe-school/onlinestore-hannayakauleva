@@ -1,17 +1,8 @@
 package com.coherentsolutions.http;
 
-import com.coherentsolutions.Product;
-import com.coherentsolutions.Store;
-import com.coherentsolutions.StoreService;
-import com.coherentsolutions.exceptions.XMLParserException;
-import com.google.gson.Gson;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 public class Client {
 
